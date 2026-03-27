@@ -1,0 +1,14 @@
+@media only screen and (min-width: 992px) {
+  #about .row {
+    display: table;
+    width: 100%;
+  }
+
+  #about .row .col-md-4,
+  #about .row .col-md-8 {
+    display: table-cell;
+    float: none;
+    vertical-align: middle;
+  }
+}
+
