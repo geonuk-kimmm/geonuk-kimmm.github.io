@@ -1,14 +1,646 @@
 @media only screen and (min-width: 992px) {
+  /* About: photo/text vertical centering on desktop */
   #about .row {
-    display: table;
-    width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   #about .row .col-md-4,
   #about .row .col-md-8 {
-    display: table-cell;
     float: none;
-    vertical-align: middle;
   }
 }
 
+/* Global tone: stronger blue, darker text, larger type */
+:root {
+  /* cobalt blue */
+  --accent-blue: #0047ab;
+  --text-strong: #0f172a;
+  --text: #111827;
+  --muted: #374151;
+  --bg: #ffffff;
+  --bg-alt: #f2f2f5;
+  --card: #ffffff;
+  --border: #e6e6e6;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  color: var(--text);
+  line-height: 1.65;
+  background: var(--bg);
+}
+
+.background-alt {
+  background: var(--bg-alt) !important;
+}
+
+/* Fixed header: keep section headings visible when jumping via nav */
+#about,
+#experience,
+#education,
+#projects,
+#contact {
+  scroll-margin-top: 90px;
+}
+
+/* Give #about more top space (fixed header) */
+#about {
+  padding-top: 120px;
+}
+
+@media only screen and (max-width: 768px) {
+  #about {
+    padding-top: 110px;
+  }
+}
+
+/* Top hero: remove large cobalt overlay */
+#lead-overlay {
+  background: transparent !important;
+}
+
+#lead-down span {
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+#lead-content h2 {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Experience timeline line (left vertical rule) */
+#experience-timeline:before,
+#experience-timeline:after {
+  background: var(--accent-blue) !important;
+}
+
+/* Remove the small bottom tail/gradient segment */
+#experience-timeline:after {
+  display: none !important;
+}
+
+/* Experience timeline marker (map-pin circle) */
+#experience .vtimeline-icon {
+  background: var(--accent-blue) !important;
+}
+
+/* Experience timeline: minimalist dots + line with gap (no touching) */
+#experience-timeline:before {
+  width: 2px !important;
+}
+
+@media only screen and (min-width: 751px) {
+  #experience .vtimeline-point {
+    position: relative;
+  }
+
+  /* match line center at ~303px; icon is 14px => left = 303 - 7 = 296 */
+  #experience .vtimeline-icon {
+    width: 21px !important;
+    height: 21px !important;
+    /* center the dot on the vertical line (303px) */
+    margin-left: 293px !important;
+    border-radius: 999px !important;
+    border: 2px solid var(--accent-blue) !important;
+    background: #fff !important;
+    /* vertically center dot within the block */
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    float: none !important;
+    /* creates visible gap so the line never "touches" the dot */
+    box-shadow: 0 0 0 7px #f2f2f5 !important;
+  }
+
+  #experience .vtimeline-icon i {
+    display: none !important;
+  }
+
+  #experience .vtimeline-current .vtimeline-icon {
+    background: var(--accent-blue) !important;
+  }
+}
+
+/* Mobile/collapsed timeline */
+@media only screen and (max-width: 750px) {
+  #experience .vtimeline-point {
+    position: relative;
+  }
+
+  #experience .vtimeline-icon {
+    width: 21px !important;
+    height: 21px !important;
+    border-radius: 999px !important;
+    border: 2px solid var(--accent-blue) !important;
+    background: #fff !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    float: none !important;
+    /* collapsed line is at 23px; center dot on it */
+    left: 13px !important;
+    box-shadow: 0 0 0 7px #f2f2f5 !important;
+  }
+
+  #experience .vtimeline-icon i {
+    display: none !important;
+  }
+
+  #experience .vtimeline-current .vtimeline-icon {
+    background: var(--accent-blue) !important;
+  }
+}
+
+/* Contact section: enforce cobalt background + readable fields */
+#contact {
+  background: var(--accent-blue) !important;
+}
+
+#contact-form input,
+#contact-form textarea {
+  background: rgba(0, 0, 0, 0.22) !important;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  background: rgba(0, 0, 0, 0.30) !important;
+}
+
+#contact-form button {
+  color: var(--accent-blue) !important;
+}
+
+a {
+  color: var(--accent-blue);
+}
+
+a:hover,
+a:focus {
+  color: #003a8c;
+}
+
+/* Full-width cobalt menu bar with white text */
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+header ul#menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: var(--accent-blue);
+  border-radius: 0;
+  padding: 10px 24px;
+}
+
+header ul#menu li {
+  display: block;
+}
+
+header ul#menu a {
+  color: #fff !important;
+  padding: 10px 12px;
+}
+
+header ul#menu a:hover,
+header ul#menu a:focus {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+/* Mobile menu icons/text */
+#mobile-menu-open,
+#mobile-menu-close {
+  color: #fff !important;
+}
+
+.top span {
+  border-color: rgba(0, 71, 171, 0.45);
+}
+
+.top i {
+  color: var(--accent-blue);
+}
+
+/* Headings darker + slightly larger */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-strong);
+}
+
+.heading {
+  font-size: 2.6em;
+  font-weight: 350;
+  color: var(--text-strong);
+}
+
+.heading {
+  margin-bottom: 12px;
+}
+
+.heading:after {
+  background: var(--accent-blue);
+}
+
+/* About heading + photo spacing */
+#about .col-md-4 > .heading {
+  margin-bottom: 6px;
+  position: relative;
+  top: -10px;
+}
+
+/* Common muted text -> darker */
+p,
+li,
+.copyright p,
+.vtimeline-content p,
+.vtimeline-content ul,
+.vtimeline-content li,
+.education-block p,
+.education-block ul,
+.project-info p,
+.pub-card__venue,
+.pub-card__authors,
+.pub-card__abstract,
+#about p,
+footer .social a {
+  color: var(--text);
+}
+
+/* Life gallery (replaces former #skills section; id is #life) */
+#life {
+  padding: 50px 15px;
+  text-align: center;
+  border-bottom: 1px solid #dcd9d9;
+}
+
+#life h2.heading {
+  color: var(--text-strong);
+  margin-bottom: 16px;
+}
+
+#life .life-intro {
+  max-width: 640px;
+  margin: 0 auto 36px;
+  padding: 0 15px;
+  font-size: 1.1em;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* About Me main paragraph (index.html:76-78) */
+#about .col-md-8 > p {
+  font-size: 1.3em;
+  line-height: 1.7;
+}
+
+/* About icons (email/github/linkedin/scholar) bigger */
+#about .social li {
+  font-size: 2.5em;
+}
+
+/* 그리드 전체 가로폭 — 숫자를 키우면 한 칸(이미지)도 같이 넓어짐 (3열이면 대략 ÷3) */
+#life .life-grid {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#life .life-grid__cell {
+  margin-bottom: 22px;
+}
+
+#life figure.life-photo {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+/* 클릭 가능: 커서 + 호버 시 돋보기 오버레이 */
+#life .life-photo__link {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid #e6e6e6;
+  cursor: zoom-in;
+  background: #f5f5f5;
+}
+
+#life .life-photo__link:focus {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+/* 너비만 그리드 칸에 맞추고, 세로는 원본 비율 유지 */
+#life .life-photo__link > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#life .life-photo__overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+#life .life-photo__link:hover .life-photo__overlay,
+#life .life-photo__link:focus .life-photo__overlay {
+  opacity: 1;
+}
+
+#life .life-photo figcaption {
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #74808a;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media only screen and (max-width: 480px) {
+  #life .life-photo figcaption {
+    font-size: 0.82em;
+  }
+}
+
+/* 라이트박스 (Life 사진 클릭 시) */
+.life-lightbox {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10050;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.life-lightbox.is-open {
+  display: flex;
+}
+
+.life-lightbox__backdrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.88);
+  border: 0;
+  cursor: pointer;
+}
+
+.life-lightbox__panel {
+  position: relative;
+  z-index: 1;
+  max-width: min(96vw, 1100px);
+  max-height: 90vh;
+  overflow: auto;
+  text-align: center;
+}
+
+.life-lightbox__img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.life-lightbox__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 40px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.life-lightbox__close:hover,
+.life-lightbox__close:focus {
+  background: rgba(0, 0, 0, 0.75);
+  outline: none;
+}
+
+.life-lightbox__caption {
+  margin: 12px 0 0;
+  padding: 0 48px 0 8px;
+  font-size: 0.95em;
+  color: #e8e8e8;
+  line-height: 1.4;
+}
+
+.life-lightbox__caption:empty {
+  display: none;
+}
+
+/* Publication cards: thumb left, text right */
+#projects .pub-list {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px 20px;
+  text-align: left;
+}
+
+#projects .pub-card {
+  position: relative;
+  display: block;
+  margin-bottom: 28px;
+  padding: 22px 22px 22px 26px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+#projects .pub-card:last-child {
+  margin-bottom: 0;
+}
+
+#projects .pub-card:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-blue);
+  opacity: 0.9;
+}
+
+#projects .pub-card__body {
+  min-width: 0;
+}
+
+#projects .pub-card__title {
+  margin: 0 0 10px 0;
+  font-size: 1.15em;
+  font-weight: 400;
+  color: var(--text-strong);
+  line-height: 1.3;
+}
+
+#projects .pub-card__venue {
+  margin: 0 0 8px 0;
+  font-size: 0.95em;
+  color: var(--text);
+}
+
+#projects .pub-card__venue strong {
+  color: var(--text);
+  font-weight: 400;
+}
+
+#projects .pub-card__links {
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+#projects .pub-card__links a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+#projects .pub-card__links a:hover {
+  text-decoration: underline;
+}
+
+#projects .pub-card__sep {
+  margin: 0 6px;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+#projects .pub-card__authors {
+  margin: 0 0 12px 0;
+  font-size: 0.9em;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* Make author emphasis bolder */
+#projects .pub-card__authors b {
+  font-weight: 900;
+}
+
+#projects .pub-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#projects .pub-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 0.9em;
+  line-height: 1;
+  border: 1px solid var(--text);
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+#projects .pub-btn--primary {
+  /* keep same base style; hover will highlight */
+  background: #fff;
+}
+
+#projects .pub-btn--ghost {
+  background: #fff;
+}
+
+#projects .pub-btn:hover,
+#projects .pub-btn:focus-visible {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+#projects .pub-abs {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text);
+  /* Conference-style body (CVPR / LaTeX-adjacent): STIX for proceedings-like serif */
+  font-family: 'STIX Two Text', 'Times New Roman', Times, 'Liberation Serif', serif;
+  font-size: 0.93em;
+  line-height: 1.62;
+  font-weight: 400;
+}
+
+#projects .pub-abs p {
+  margin: 0;
+  color: var(--text);
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Experience: tighten spacing between h3/h4/p in each timeline block */
+#experience .vtimeline-content h3 {
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+#experience .vtimeline-content h4 {
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+#experience .vtimeline-content p {
+  margin: 0;
+  color: var(--muted);
+}
+
+
+@media only screen and (max-width: 768px) {
+  #projects .pub-card {
+    padding-left: 22px;
+  }
+}

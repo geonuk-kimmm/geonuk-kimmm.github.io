@@ -9,10 +9,11 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom.css?v=pub-abs-stix-1" rel="stylesheet">
 </head>
 
 <body>
@@ -26,7 +27,7 @@
         </div>
         <ul id="menu" class="shadow">
             <li>
-                <a href="#about">About</a>
+                <a href="#about">Home</a>
             </li>
             <li>
                 <a href="#experience">Experience</a>
@@ -37,9 +38,7 @@
             <li>
                 <a href="#projects">Publication</a>
             </li>
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
+
             <li>
                 <a href="#contact">Contact</a>
             </li>
@@ -47,34 +46,17 @@
     </header>
     <!-- End header -->
 
-    <div id="lead">
-        <div id="lead-content">
-            <h1>Geonuk Kim</h1>
-            <h2>AI Research Engineer</h2>
-            <!-- <a href="#" class="btn-rounded-white">Download Resume</a> -->
-        </div>
-        <!-- End #lead-content -->
-
-        <div id="lead-overlay"></div>
-
-        <div id="lead-down">
-            <span>
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </span>
-        </div>
-        <!-- End #lead-down -->
-    </div>
-    <!-- End #lead -->
-
     <div id="about">
 	    <div class="container">
 	        <div class="row">
 	            <div class="col-md-4">
-	                <h2 class="heading">About Me</h2>
+	                <h2 class="heading">Geonuk Kim</h2>
 	                <img src="images/smile.jpg" alt="figure" style="display: block; width: 100%; max-width: 200px; height: auto; border-radius: 8px; margin-top: 6px; -webkit-clip-path: inset(5% 0 5% 0 round 8px); clip-path: inset(5% 0 5% 0 round 8px);">
 	            </div>
 	            <div class="col-md-8">
 	                <p>
+                        <br>
+                        <br>
 	                    As an AI research engineer, I am driven to build AI that goes beyond clean benchmarks and holds up under real-world conditions.
 	                    My research spans open-set recognition, few-shot learning, and class imbalance, with an eye toward real-world deployment in areas
 	                    such as visual inspection at Hyundai Motor Group and LG Energy Solution. I am also interested in autonomous driving and robotics, where real-world complexity is amplified at scale.
@@ -176,71 +158,170 @@
     <div id="projects" class="background-alt">
         <h2 class="heading">Publication</h2>
         <div class="container">
-            <div class="row">
-		<div class="project no-image">
-		    <div class="project-info">
-			<h3>UniSpector: Towards Universal Open-set Defect Recognition via Spectral-Contrastive Visual Prompting</h3>
-			<p>
-			    <b>Geonuk Kim</b>, Minhoi Kim, Kangil Lee, Minsu Kim, Hyeonseong Jeon, Jeonghoon Han, Hyoungjoon Lim and Junho Yim
-			</p>
-			CVPR 2026 <a href="https://geonuk-kimmm.github.io/UniSpector">[project_page]</a> <a href="https://geonuk-kimmm.github.io/UniSpector">[paper]</a>
-		    </div>
-		    <!-- End .project-info -->
-		</div>
-		
-		<div class="project no-image">
-		    <div class="project-info">
-			<h3>Character Decomposition to Resolve Class-Imbalance Problem in Hangul OCR</h3>
-			<p>
-			    <b>Geonuk Kim</b>, Jaemin Son, Kanghyu Lee and Jaesik Min
-			</p>
-			ECCV 2024 workshop <a href="https://arxiv.org/abs/2208.06079">[paper]</a>
-		    </div>
-		    <!-- End .project-info -->
-		</div>		    
-		    
-		<div class="project no-image">
-		    <div class="project-info">
-			<h3>Spatial Reasoning for Few-Shot Object Detection</h3>
-			<p>
-			    <b>Geonuk Kim</b>, Hong-Gyu Jung and Seong-Whan Lee
-			</p>
-			Pattern Recognition 2021 <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320321003058">[paper]</a>
-		    </div>
-		    <!-- End .project-info -->
-		</div>
+            <!-- Replace images/pubs/*.jpg (or .gif) with paper teasers -->
+            <div class="pub-list">
+                <article class="pub-card">
+                    <div class="pub-card__body">
+                        <h3 class="pub-card__title">UniSpector: Towards Universal Open-set Defect Recognition via Spectral-Contrastive Visual Prompting</h3>
+                        <p class="pub-card__authors"><b>Geonuk Kim</b>, Minhoi Kim, Kangil Lee, Minsu Kim, Hyeonseong Jeon, Jeonghoon Han, Hyoungjoon Lim and Junho Yim</p>
+                        <p class="pub-card__venue">In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026</p>
+                        <div class="pub-card__actions">
+                            <a class="pub-btn pub-btn--primary" href="https://geonuk-kimmm.github.io/UniSpector" target="_blank" rel="noopener noreferrer">Project</a>
+                            <a class="pub-btn pub-btn--ghost" href="https://geonuk-kimmm.github.io/UniSpector" target="_blank" rel="noopener noreferrer">Paper</a>
+                            <button type="button" class="pub-btn pub-btn--ghost pub-abs-btn" aria-expanded="false">Abstract</button>
+                        </div>
+                        <div class="pub-abs" hidden>
+                            <p>Although industrial inspection systems should be capable
+                                of recognizing unprecedented defects, most existing ap
+                                proaches operate under a closed-set assumption, which pre
+                                vents them from detecting novel anomalies. While visual
+                                prompting offers a scalable alternative for industrial in
+                                spection, existing methods often suffer from prompt em
+                                bedding collapse due to high intra-class variance and
+                                subtle inter-class differences. To resolve this, we propose
+                                UniSpector, which shifts the focus from naive prompt-to
+                                region matching to the principled design of a semantically
+                                structured and transferable prompt topology. UniSpector
+                                employs the Spatial-Spectral Prompt Encoder to extract
+                                orientation-invariant, fine-grained representations; these
+                                serve as a solid basis for the Contrastive Prompt Encoder
+                                to explicitly regularize the prompt space into a semantically
+                                organized angular manifold. Additionally, Prompt-guided
+                                Query Selection generates adaptive object queries aligned
+                                with the prompt. We introduce Inspect Anything, the first
+                                benchmark for visual-prompt-based open-set defect local
+                                ization, where UniSpector significantly outperforms base
+                                lines by at least 19.7% and 15.8% in AP50b and AP50m,
+                                respectively. These results show that our method enable a
+                                scalable, retraining-free inspection paradigm for continu
+                                ously evolving industrial environments, while offering crit
+                                ical insights into the design of generic visual prompting.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="pub-card">
+                    <div class="pub-card__body">
+                        <h3 class="pub-card__title">Cycle-Consistency Uncertainty Estimation for Visual Prompting based One-Shot Defect Segmentation</h3>
+                        <p class="pub-card__authors"><b>Geonuk Kim</b></p>
+                        <p class="pub-card__venue">arXiv preprint, 2024. Technical report for the Most Innovative Award, One-Shot Defect Segmentation Challenge, VISION Workshop, ECCV 2024</p>
+                        <div class="pub-card__actions">
+                            <a class="pub-btn pub-btn--primary" href="https://arxiv.org/abs/2409.13984" target="_blank" rel="noopener noreferrer">Paper</a>
+                            <button type="button" class="pub-btn pub-btn--ghost pub-abs-btn" aria-expanded="false">Abstract</button>
+                        </div>
+                        <div class="pub-abs" hidden>
+                            <p>Industrial defect detection traditionally relies on supervised
+                                learning models trained on fixed datasets of known defect types. While
+                                effective within a closed set, these models struggle with new, unseen defects, necessitating frequent re-labeling and re-training. Recent advances
+                                in visual prompting offer a solution by allowing models to adaptively infer novel categories based on provided visual cues. However, a prevalent
+                                issue in these methods is the over-confdence problem, where models can
+                                mis-classify unknown objects as known objects with high certainty. To
+                                addresssing the fundamental concerns about the adaptability, we propose a solution to estimate uncertainty of the visual prompting process
+                                by cycle-consistency. We designed to check whether it can accurately
+                                restore the original prompt from its predictions. To quantify this, we
+                                measure the mean Intersection over Union (mIoU) between the restored
+                                prompt mask and the originally provided prompt mask. Without using complex designs or ensemble methods with multiple networks, our
+                                approach achieved a yield rate of 0.9175 in the VISION24 one-shot industrial challenge.
+                                </p>
+                        </div>
+                    </div>
+                </article>
+                <article class="pub-card">
+                    <div class="pub-card__body">
+                        <h3 class="pub-card__title">Separating Novel Features for Logical Anomaly Detection: A Straightforward yet Effective Approach</h3>
+                        <p class="pub-card__authors">Kangil Lee, <b>Geonuk Kim</b></p>
+                        <p class="pub-card__venue">arXiv preprint, 2024</p>
+                        <div class="pub-card__actions">
+                            <a class="pub-btn pub-btn--primary" href="https://arxiv.org/abs/2407.17909" target="_blank" rel="noopener noreferrer">Paper</a>
+                            <button type="button" class="pub-btn pub-btn--ghost pub-abs-btn" aria-expanded="false">Abstract</button>
+                        </div>
+                        <div class="pub-abs" hidden>
+                            <p>Vision-based inspection algorithms have significantly contributed to quality control in industrial settings, particularly in addressing structural
+                                defects like dent and contamination which are
+                                prevalent in mass production. Extensive research
+                                efforts have led to the development of related
+                                benchmarks such as MVTec AD (Bergmann et al.,
+                                2019). However, in industrial settings, there can
+                                be instances of logical defects, where acceptable items are found in unsuitable locations or
+                                product pairs do not match as expected. Recent
+                                methods tackling logical defects effectively employ knowledge distillation to generate difference
+                                maps. Knowledge distillation (KD) is used to
+                                learn normal data distribution in unsupervised
+                                manner.
+                                Despite their effectiveness, these methods often
+                                overlook the potential false negatives. Excessive
+                                similarity between the teacher network and student network can hinder the generation of a suitable difference map for logical anomaly detection. This technical report provides insights on
+                                handling potential false negatives by utilizing a
+                                simple constraint in KD-based logical anomaly detection methods. We select EfficientAD (Batzner
+                                et al., 2023) as a state-of-the-art baseline and apply a margin-based constraint to its unsupervised
+                                learning scheme. Applying this constraint, we can
+                                improve the AUROC for MVTec LOCO AD by
+                                1.3 %.</p>
+                        </div>
+                    </div>
+                </article>
 
-		<div class="project no-image">
-		    <div class="project-info">
-			<h3>Few-Shot Object Detection via Knowledge Transfer</h3>
-			<p>
-			    <b>Geonuk Kim</b>, Hong-Gyu Jung and Seong-Whan Lee
-			</p>
-			IEEE SMC 2020 <a href="https://arxiv.org/abs/2008.12496">[paper]</a>
-		    </div>
-		    <!-- End .project-info -->
-		</div>
-		    
-		    
-                <!-- End .project -->
+                <article class="pub-card">
+                    <div class="pub-card__body">
+                        <h3 class="pub-card__title">Character Decomposition to Resolve Class-Imbalance Problem in Hangul OCR</h3>
+                        <p class="pub-card__authors"><b>Geonuk Kim</b>, Jaemin Son, Kanghyu Lee and Jaesik Min</p>
+                        <p class="pub-card__venue">Text-in-Everything Workshop @ ECCV (ECCVW), 2022</p>
+                        <div class="pub-card__actions">
+                            <a class="pub-btn pub-btn--primary" href="https://arxiv.org/abs/2208.06079" target="_blank" rel="noopener noreferrer">Paper</a>
+                            <button type="button" class="pub-btn pub-btn--ghost pub-abs-btn" aria-expanded="false">Abstract</button>
+                        </div>
+                        <div class="pub-abs" hidden>
+                            <p>We present a novel approach to OCR(Optical Character Recognition) of Korean character, Hangul. As a phonogram, Hangul can represent 11,172 different characters
+                                with only 52 graphemes, by describing each character with
+                                a combination of the graphemes. As the total number of
+                                the characters could overwhelm the capacity of a neural
+                                network, the existing OCR encoding methods pre-define a
+                                smaller set of characters that are frequently used. This
+                                design choice naturally compromises the performance on
+                                long-tailed characters in the distribution. In this work,
+                                we demonstrate that grapheme encoding is not only efficient but also performant for Hangul OCR. Benchmark
+                                tests show that our approach resolves two main problems
+                                of Hangul OCR: class imbalance and target class selection.
+                                </p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="pub-card">
+                    <div class="pub-card__body">
+                        <h3 class="pub-card__title">Spatial Reasoning for Few-Shot Object Detection</h3>
+                        <p class="pub-card__authors"><b>Geonuk Kim</b>, Hong-Gyu Jung and Seong-Whan Lee</p>
+                        <p class="pub-card__venue">Pattern Recognition (PR), 2021</p>
+                        <div class="pub-card__actions">
+                            <a class="pub-btn pub-btn--primary" href="https://www.sciencedirect.com/science/article/abs/pii/S0031320321003058" target="_blank" rel="noopener noreferrer">Paper</a>
+                            <button type="button" class="pub-btn pub-btn--ghost pub-abs-btn" aria-expanded="false">Abstract</button>
+                        </div>
+                        <div class="pub-abs" hidden>
+                            <p>Although modern object detectors rely heavily on a significant amount of training data, humans can easily detect novel objects using a few training examples. The mechanism of the human visual system is to interpret spatial relationships among various objects and this process enables us to exploit contextual information by considering the co-occurrence of objects. Thus, we propose a spatial reasoning framework that detects novel objects with only a few training examples in a context. We infer geometric relatedness between novel and base RoIs (Region-of-Interests) to enhance the feature representation of novel categories using an object detector well trained on base categories. We employ a graph convolutional network as the RoIs and their relatedness are defined as nodes and edges, respectively. Furthermore, we present spatial data augmentation to overcome the few-shot environment where all objects and bounding boxes in an image are resized randomly. Using the PASCAL VOC and MS COCO datasets, we demonstrate that the proposed method significantly outperforms the state-of-the-art methods and verify its efficacy through extensive ablation studies.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="pub-card">
+                    <div class="pub-card__body">
+                        <h3 class="pub-card__title">Few-Shot Object Detection via Knowledge Transfer</h3>
+                        <p class="pub-card__authors"><b>Geonuk Kim</b>, Hong-Gyu Jung and Seong-Whan Lee</p>
+                        <p class="pub-card__venue">IEEE International Conference on Systems, Man, and Cybernetics (SMC), Oct 2020</p>
+                        <div class="pub-card__actions">
+                            <a class="pub-btn pub-btn--primary" href="https://arxiv.org/abs/2008.12496" target="_blank" rel="noopener noreferrer">Paper</a>
+                            <button type="button" class="pub-btn pub-btn--ghost pub-abs-btn" aria-expanded="false">Abstract</button>
+                        </div>
+                        <div class="pub-abs" hidden>
+                            <p>Conventional methods for object detection usually require substantial amounts of training data and annotated bounding boxes. If there are only a few training data and annotations, the object detectors easily overfit and fail to generalize. It exposes the practical weakness of the object detectors. On the other hand, human can easily master new reasoning rules with only a few demonstrations using previously learned knowledge. In this paper, we introduce a few-shot object detection via knowledge transfer, which aims to detect objects from a few training examples. Central to our method is prototypical knowledge transfer with an attached meta-learner. The meta-learner takes support set images that include the few examples of the novel categories and base categories, and predicts prototypes that represent each category as a vector. Then, the prototypes reweight each RoI (Region-of-Interest) feature vector from a query image to remodels R-CNN predictor heads. To facilitate the remodeling process, we predict the prototypes under a graph structure, which propagates information of the correlated base categories to the novel categories with explicit guidance of prior knowledge that represents correlations among categories. Extensive experiments on the PASCAL VOC dataset verifies the effectiveness of the proposed method.</p>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </div>
     <!-- End #projects -->
 
-    <!--
-    <div id="skills">
-        <h2 class="heading">Skills</h2>
-        <ul>
-            <li>Python</li>
-            <li>Pytorch</li>
-            <li>Tensorflow</li>
-            <li>C</li>
-            <li>C++</li>
-        </ul>
-    </div>
-    -->
-    <!-- End #skills -->
+    
+    
 
     <div id="contact">
         <h2>Get in Touch</h2>
@@ -290,8 +371,77 @@
     </footer>
     <!-- End footer -->
 
+    <div id="life-lightbox" class="life-lightbox" aria-hidden="true">
+        <button type="button" class="life-lightbox__backdrop" aria-label="닫기"></button>
+        <div class="life-lightbox__panel" role="dialog" aria-modal="true" aria-labelledby="life-lightbox-caption">
+            <button type="button" class="life-lightbox__close" aria-label="닫기"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <img class="life-lightbox__img" src="" alt="">
+            <p id="life-lightbox-caption" class="life-lightbox__caption"></p>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.min.js"></script>
+    <script src="js/scripts.min.js?v=scroll-instant-1"></script>
+    <script>
+    (function ($) {
+        var $lb = $('#life-lightbox');
+        var $img = $lb.find('.life-lightbox__img');
+        var $cap = $lb.find('.life-lightbox__caption');
+
+        function openLifeLightbox(src, caption) {
+            $img.attr('src', src).attr('alt', caption || '');
+            $cap.text(caption || '');
+            $lb.addClass('is-open').attr('aria-hidden', 'false');
+            $('body').css('overflow', 'hidden');
+        }
+
+        function closeLifeLightbox() {
+            $lb.removeClass('is-open').attr('aria-hidden', 'true');
+            $img.attr('src', '');
+            $('body').css('overflow', '');
+        }
+
+        $(document).on('click', '#life .life-photo__link', function (e) {
+            e.preventDefault();
+            var $a = $(this);
+            var src = $a.attr('href');
+            var caption = $a.closest('figure').find('figcaption').text();
+            openLifeLightbox(src, caption);
+        });
+
+        // Experience timeline: mark "current" item for styling
+        (function markCurrentExperience() {
+            $('#experience-timeline .vtimeline-content').each(function () {
+                var dateStr = $(this).attr('data-date') || '';
+                if (String(dateStr).toLowerCase().indexOf('current') !== -1) {
+                    $(this).closest('.vtimeline-point').addClass('vtimeline-current');
+                }
+            });
+        })();
+
+        // Publication abstracts: toggle inline (no zoom)
+        $(document).on('click', '#projects .pub-abs-btn', function () {
+            var $btn = $(this);
+            var $card = $btn.closest('.pub-card__body');
+            var $abs = $card.find('.pub-abs').first();
+            var isOpen = !$abs.prop('hidden');
+
+            $abs.prop('hidden', isOpen);
+            $btn.attr('aria-expanded', String(!isOpen));
+            // prevent "stuck" focus highlight after click
+            this.blur();
+        });
+
+        $lb.find('.life-lightbox__backdrop, .life-lightbox__close').on('click', closeLifeLightbox);
+
+        $(document).on('keydown', function (e) {
+            if (e.keyCode === 27 && $lb.hasClass('is-open')) {
+                closeLifeLightbox();
+            }
+        });
+
+    })(jQuery);
+    </script>
 </body>
 
 </html>

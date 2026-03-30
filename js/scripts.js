@@ -15,7 +15,18 @@
     // Remove no-js class
     $('html').removeClass('no-js');
 
-    // Animate to section when nav is clicked
+    function yForElement(el) {
+        if (!el) {
+            return 0;
+        }
+        var margin = parseFloat(getComputedStyle(el).scrollMarginTop);
+        if (isNaN(margin)) {
+            margin = 0;
+        }
+        return el.getBoundingClientRect().top + window.pageYOffset - margin;
+    }
+
+    // Navigate to section when nav is clicked (instant jump; scroll-margin respected)
     $('header a').click(function(e) {
 
         // Treat as normal link if no-scroll class
@@ -23,11 +34,11 @@
 
         e.preventDefault();
         var heading = $(this).attr('href');
-        var scrollDistance = $(heading).offset().top;
-
-        $('html, body').animate({
-            scrollTop: scrollDistance + 'px'
-        }, Math.abs(window.pageYOffset - $(heading).offset().top) / 1);
+        var target = heading && document.querySelector(heading);
+        if (!target) {
+            return;
+        }
+        window.scrollTo(0, Math.max(0, yForElement(target)));
 
         // Hide the menu once clicked if mobile
         if ($('header').hasClass('active')) {
@@ -37,17 +48,17 @@
 
     // Scroll to top
     $('#to-top').click(function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
+        window.scrollTo(0, 0);
     });
 
     // Scroll to first element
     $('#lead-down span').click(function() {
-        var scrollDistance = $('#lead').next().offset().top;
-        $('html, body').animate({
-            scrollTop: scrollDistance + 'px'
-        }, 500);
+        var $next = $('#lead').next();
+        if (!$next.length) {
+            return;
+        }
+        var el = $next.get(0);
+        window.scrollTo(0, Math.max(0, yForElement(el)));
     });
 
     // Create timeline
