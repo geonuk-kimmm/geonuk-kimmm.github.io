@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <link href="css/custom.css?v=mobile-menu-fix-1" rel="stylesheet">
+    <link href="css/custom.css?v=dark-surface-tune-1" rel="stylesheet">
 </head>
 
 <body>
@@ -41,6 +41,11 @@
 
             <li>
                 <a href="#contact">Contact</a>
+            </li>
+            <li class="menu-theme">
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="야간 모드 전환" onclick="window.toggleTheme && window.toggleTheme()">
+                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                </button>
             </li>
         </ul>
     </header>
@@ -381,9 +386,54 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.min.js?v=scroll-instant-1"></script>
+    <script src="js/scripts.min.js?v=icon-toggle-2"></script>
     <script>
     (function ($) {
+        // Theme toggle fallback (in case external script is cached/blocked)
+        (function initThemeToggleFallback() {
+            var root = document.documentElement;
+            var btn = document.getElementById('theme-toggle');
+            if (!btn) return;
+
+            function apply(theme) {
+                var isDark = theme === 'dark';
+                if (isDark) { root.setAttribute('data-theme', 'dark'); document.body && document.body.setAttribute('data-theme','dark'); }
+                else { root.removeAttribute('data-theme'); document.body && document.body.removeAttribute('data-theme'); }
+                btn.setAttribute('aria-pressed', String(isDark));
+                btn.setAttribute('title', isDark ? '밝게' : '야간');
+                var icon = btn.querySelector('i.fa');
+                if (icon) {
+                    icon.classList.remove('fa-moon-o', 'fa-sun-o');
+                    icon.classList.add(isDark ? 'fa-sun-o' : 'fa-moon-o');
+                }
+            }
+
+            // Hard fallback: global function called by inline onclick (bypasses any overlay/delegation issues)
+            window.toggleTheme = function () {
+                var isDark = root.getAttribute('data-theme') === 'dark';
+                var next = isDark ? 'light' : 'dark';
+                apply(next);
+                try { localStorage.setItem('theme', next); } catch (e) {}
+            };
+
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            if (saved !== 'dark' && saved !== 'light') {
+                var prefersDark = false;
+                try { prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) {}
+                saved = prefersDark ? 'dark' : 'light';
+            }
+            apply(saved);
+
+            $(document).off('click.themeToggleFallback').on('click.themeToggleFallback', '#theme-toggle', function () {
+                var isDark = root.getAttribute('data-theme') === 'dark';
+                var next = isDark ? 'light' : 'dark';
+                apply(next);
+                try { localStorage.setItem('theme', next); } catch (e) {}
+                this.blur();
+            });
+        })();
+
         var $lb = $('#life-lightbox');
         var $img = $lb.find('.life-lightbox__img');
         var $cap = $lb.find('.life-lightbox__caption');

@@ -15,6 +15,56 @@
     // Remove no-js class
     $('html').removeClass('no-js');
 
+    function applyTheme(theme) {
+        var isDark = theme === 'dark';
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        // Mirror on body for any future selectors/debugging
+        try {
+            if (isDark) document.body && document.body.setAttribute('data-theme', 'dark');
+            else document.body && document.body.removeAttribute('data-theme');
+        } catch (e) {}
+
+        var btn = document.getElementById('theme-toggle');
+        if (btn) {
+            btn.setAttribute('aria-pressed', String(isDark));
+            btn.setAttribute('title', isDark ? '밝게' : '야간');
+            var $icon = btn.querySelector('i.fa');
+            if ($icon) {
+                $icon.classList.remove('fa-moon-o', 'fa-sun-o');
+                $icon.classList.add(isDark ? 'fa-sun-o' : 'fa-moon-o');
+            }
+        }
+    }
+
+    (function initTheme() {
+        var saved = null;
+        try {
+            saved = localStorage.getItem('theme');
+        } catch (e) {}
+        if (saved !== 'dark' && saved !== 'light') {
+            var prefersDark = false;
+            try {
+                prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            } catch (e) {}
+            saved = prefersDark ? 'dark' : 'light';
+        }
+        applyTheme(saved === 'dark' ? 'dark' : 'light');
+    })();
+
+    $(document).on('click', '#theme-toggle', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        applyTheme(next);
+        try {
+            localStorage.setItem('theme', next === 'dark' ? 'dark' : 'light');
+        } catch (e) {}
+        this.blur();
+    });
+
     function yForElement(el) {
         if (!el) {
             return 0;

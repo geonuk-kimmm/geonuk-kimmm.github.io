@@ -24,6 +24,20 @@
   --border: #e6e6e6;
 }
 
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  /* Dark mode: white -> black, blue -> gray, text -> white */
+  --accent-blue: #6b7280; /* gray */
+  --text-strong: #ffffff;
+  --text: #ffffff;
+  --muted: #d1d5db;
+  --bg: #000000;
+  --bg-alt: #0b0b0f;
+  --card: #0f1115;
+  --border: #2a2f38;
+  --dark-surface: #1b2130; /* slightly lighter than previous cards */
+}
+
 html {
   font-size: 18px;
 }
@@ -36,6 +50,15 @@ body {
 
 .background-alt {
   background: var(--bg-alt) !important;
+}
+
+html[data-theme="dark"] a {
+  color: var(--text);
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus {
+  color: #e5e7eb;
 }
 
 /* Fixed header: keep section headings visible when jumping via nav */
@@ -57,68 +80,37 @@ body {
     padding-top: 110px;
   }
 
-  /*
-   * Mobile nav drawer (template relies on header.active + body.active).
-   * - body.active { z-index: -1 } in styles.css was sending the whole page (incl. menu) behind the root, so the overlay could disappear.
-   * - #mobile-menu-open kept white background while custom forced white icon → invisible button.
-   */
-  #mobile-menu-open {
-    display: block !important;
-    background: var(--accent-blue) !important;
-    color: #fff !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
-    z-index: 10000;
-    top: 12px;
-    right: 12px;
-  }
-
-  header.active {
-    display: flex !important;
-    flex-direction: column;
-    align-items: stretch;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    z-index: 10001;
-    background: var(--accent-blue);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
+  /* Mobile: keep top menu bar always visible (no drawer) */
+  #mobile-menu-open,
   #mobile-menu-close {
-    display: block !important;
-    flex: 0 0 auto;
-    padding: 16px 18px;
-    text-align: right;
-    cursor: pointer;
-    font-size: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    display: none !important;
+  }
+
+  header {
+    display: block !important; /* override template: header{display:none} on mobile */
+    height: auto !important;   /* override template: height:100% */
+    bottom: auto !important;   /* override template: bottom:0 */
+    background: transparent;   /* background is on #menu */
   }
 
   header ul#menu {
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    height: auto;
-    min-height: 0;
-    padding: 12px 16px 28px;
-    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
   }
 
   header ul#menu li {
-    margin-bottom: 6px;
+    margin-bottom: 0;
+    flex: 0 0 auto;
   }
 
   header ul#menu a {
-    display: block;
-    text-align: left;
-    padding: 14px 14px;
+    padding: 10px 10px;
+    border-radius: 10px;
   }
 }
 
@@ -169,14 +161,14 @@ body {
     margin-left: 293px !important;
     border-radius: 999px !important;
     border: 2px solid var(--accent-blue) !important;
-    background: #fff !important;
+    background: var(--bg) !important;
     /* vertically center dot within the block */
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     float: none !important;
     /* creates visible gap so the line never "touches" the dot */
-    box-shadow: 0 0 0 7px #f2f2f5 !important;
+    box-shadow: 0 0 0 7px var(--bg-alt) !important;
   }
 
   #experience .vtimeline-icon i {
@@ -199,14 +191,14 @@ body {
     height: 21px !important;
     border-radius: 999px !important;
     border: 2px solid var(--accent-blue) !important;
-    background: #fff !important;
+    background: var(--bg) !important;
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     float: none !important;
     /* collapsed line is at 23px; center dot on it */
     left: 13px !important;
-    box-shadow: 0 0 0 7px #f2f2f5 !important;
+    box-shadow: 0 0 0 7px var(--bg-alt) !important;
   }
 
   #experience .vtimeline-icon i {
@@ -221,6 +213,11 @@ body {
 /* Contact section: enforce cobalt background + readable fields */
 #contact {
   background: var(--accent-blue) !important;
+}
+
+html[data-theme="dark"] #contact,
+body[data-theme="dark"] #contact {
+  background: var(--dark-surface) !important;
 }
 
 #contact-form input,
@@ -253,6 +250,13 @@ body.active {
   z-index: auto;
 }
 
+/* If we don't use the mobile drawer, never lock body scroll */
+@media only screen and (max-width: 768px) {
+  body.active {
+    overflow: auto;
+  }
+}
+
 header {
   position: fixed;
   top: 0;
@@ -262,6 +266,8 @@ header {
 }
 
 header ul#menu {
+  position: relative;
+  z-index: 1001;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -271,6 +277,11 @@ header ul#menu {
   padding: 10px 24px;
 }
 
+html[data-theme="dark"] header ul#menu,
+body[data-theme="dark"] header ul#menu {
+  background: var(--dark-surface) !important;
+}
+
 header ul#menu li {
   display: block;
 }
@@ -278,6 +289,42 @@ header ul#menu li {
 header ul#menu a {
   color: #fff !important;
   padding: 10px 12px;
+}
+
+header ul#menu .theme-toggle {
+  position: relative;
+  z-index: 1002;
+  pointer-events: auto;
+  appearance: none;
+  border: 0;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 999px;
+  line-height: 1;
+  cursor: pointer;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+header ul#menu li.menu-theme {
+  position: relative;
+  z-index: 1002;
+  pointer-events: auto;
+}
+
+header ul#menu .theme-toggle i {
+  font-size: 16px;
+  line-height: 1;
+}
+
+header ul#menu .theme-toggle:hover,
+header ul#menu .theme-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
 }
 
 header ul#menu a:hover,
@@ -658,11 +705,11 @@ footer .social a {
 
 #projects .pub-btn--primary {
   /* keep same base style; hover will highlight */
-  background: #fff;
+  background: var(--card);
 }
 
 #projects .pub-btn--ghost {
-  background: #fff;
+  background: var(--card);
 }
 
 #projects .pub-btn:hover,
@@ -685,6 +732,105 @@ footer .social a {
   font-size: 0.93em;
   line-height: 1.62;
   font-weight: 400;
+}
+
+html[data-theme="dark"] #projects .pub-abs {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] #contact-form input,
+html[data-theme="dark"] #contact-form textarea {
+  color: #fff;
+}
+
+html[data-theme="dark"] #contact-form input::placeholder,
+html[data-theme="dark"] #contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+html[data-theme="dark"] #contact-form button {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.75) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Dark mode: Experience section text + cards */
+html[data-theme="dark"] #experience,
+body[data-theme="dark"] #experience {
+  color: var(--text);
+}
+
+html[data-theme="dark"] #experience h2.heading,
+body[data-theme="dark"] #experience h2.heading {
+  color: var(--text-strong) !important;
+}
+
+html[data-theme="dark"] #experience .vtimeline-content,
+body[data-theme="dark"] #experience .vtimeline-content {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+}
+
+html[data-theme="dark"] #experience .vtimeline-content h3,
+html[data-theme="dark"] #experience .vtimeline-content h4,
+html[data-theme="dark"] #experience .vtimeline-content p,
+body[data-theme="dark"] #experience .vtimeline-content h3,
+body[data-theme="dark"] #experience .vtimeline-content h4,
+body[data-theme="dark"] #experience .vtimeline-content p {
+  color: var(--text) !important;
+}
+
+html[data-theme="dark"] #experience .vtimeline-date,
+body[data-theme="dark"] #experience .vtimeline-date {
+  color: var(--muted) !important;
+}
+
+/* Dark mode: section headings should be white everywhere */
+html[data-theme="dark"] .heading,
+body[data-theme="dark"] .heading,
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6 {
+  color: var(--text-strong) !important;
+}
+
+/* Dark mode: make cards distinct from black background */
+html[data-theme="dark"] #experience .vtimeline-content,
+body[data-theme="dark"] #experience .vtimeline-content,
+html[data-theme="dark"] #experience .vtimeline-block,
+body[data-theme="dark"] #experience .vtimeline-block {
+  background: var(--dark-surface) !important; /* dark gray card */
+  border-color: #2a2f38 !important;
+}
+
+/* Experience timeline: keep the wrapper transparent so it doesn't cover the vertical line */
+html[data-theme="dark"] #experience .vtimeline-block,
+body[data-theme="dark"] #experience .vtimeline-block {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html[data-theme="dark"] #education .education-block,
+body[data-theme="dark"] #education .education-block {
+  background: var(--dark-surface) !important;
+  border-color: #2a2f38 !important;
+  color: var(--text) !important;
+}
+
+html[data-theme="dark"] #projects .pub-card,
+body[data-theme="dark"] #projects .pub-card {
+  background: var(--dark-surface) !important;
+  border-color: #2a2f38 !important;
 }
 
 #projects .pub-abs p {
