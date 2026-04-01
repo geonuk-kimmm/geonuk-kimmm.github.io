@@ -26,16 +26,23 @@
 
 html[data-theme="dark"],
 body[data-theme="dark"] {
-  /* Dark mode: white -> black, blue -> gray, text -> white */
-  --accent-blue: #6b7280; /* gray */
-  --text-strong: #ffffff;
-  --text: #ffffff;
-  --muted: #d1d5db;
-  --bg: #000000;
-  --bg-alt: #0b0b0f;
-  --card: #0f1115;
-  --border: #2a2f38;
-  --dark-surface: #1b2130; /* slightly lighter than previous cards */
+  /* Dark mode: no pure black; stripes + elevated cards */
+  --accent-blue: #8b92a3; /* muted cool gray (was cobalt) */
+  --text-strong: #f4f6f9;
+  --text: #e8eaef;
+  --muted: #b8c0cc;
+  --bg: #1e242e; /* default / gray stripe */
+  --bg-alt: #141c2e; /* navy stripe (for .background-alt in dark) */
+  --card: #2a3140;
+  --border: #3d4758;
+  /* Alternating section bands */
+  --dark-stripe-gray: #1e242e;
+  --dark-stripe-navy: #141c2e;
+  /* Cards sit slightly above their band */
+  --dark-card-on-gray: #2a3140;
+  --dark-card-on-navy: #1f2a3d;
+  /* Header / legacy alias */
+  --dark-surface: var(--dark-stripe-gray);
 }
 
 html {
@@ -59,6 +66,44 @@ html[data-theme="dark"] a {
 html[data-theme="dark"] a:hover,
 html[data-theme="dark"] a:focus {
   color: #e5e7eb;
+}
+
+/* Dark mode: alternating stripes (gray / navy), no flat black */
+html[data-theme="dark"] body,
+body[data-theme="dark"] {
+  background: var(--dark-stripe-gray) !important;
+}
+
+html[data-theme="dark"] #about,
+body[data-theme="dark"] #about {
+  background: var(--dark-stripe-gray) !important;
+}
+
+html[data-theme="dark"] #experience,
+body[data-theme="dark"] #experience {
+  background: var(--dark-stripe-navy) !important;
+}
+
+html[data-theme="dark"] #education,
+body[data-theme="dark"] #education {
+  background: var(--dark-stripe-gray) !important;
+}
+
+html[data-theme="dark"] #projects,
+body[data-theme="dark"] #projects {
+  background: var(--dark-stripe-navy) !important;
+}
+
+html[data-theme="dark"] footer,
+body[data-theme="dark"] footer {
+  background: var(--dark-stripe-navy) !important;
+  color: var(--text);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] footer a,
+body[data-theme="dark"] footer a {
+  color: var(--text) !important;
 }
 
 /* Fixed header: keep section headings visible when jumping via nav */
@@ -210,6 +255,12 @@ html[data-theme="dark"] a:focus {
   }
 }
 
+/* Dark: timeline halo matches navy stripe (line stays visible across cards) */
+html[data-theme="dark"] #experience .vtimeline-icon,
+body[data-theme="dark"] #experience .vtimeline-icon {
+  box-shadow: 0 0 0 7px var(--dark-stripe-navy) !important;
+}
+
 /* Contact section: enforce cobalt background + readable fields */
 #contact {
   background: var(--accent-blue) !important;
@@ -217,7 +268,7 @@ html[data-theme="dark"] a:focus {
 
 html[data-theme="dark"] #contact,
 body[data-theme="dark"] #contact {
-  background: var(--dark-surface) !important;
+  background: var(--dark-stripe-gray) !important;
 }
 
 #contact-form input,
@@ -279,7 +330,7 @@ header ul#menu {
 
 html[data-theme="dark"] header ul#menu,
 body[data-theme="dark"] header ul#menu {
-  background: var(--dark-surface) !important;
+  background: var(--dark-stripe-gray) !important;
 }
 
 header ul#menu li {
@@ -734,8 +785,10 @@ footer .social a {
   font-weight: 400;
 }
 
-html[data-theme="dark"] #projects .pub-abs {
-  background: rgba(0, 0, 0, 0.35);
+html[data-theme="dark"] #projects .pub-abs,
+body[data-theme="dark"] #projects .pub-abs {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border);
 }
 
 html[data-theme="dark"] #contact-form input,
@@ -763,13 +816,6 @@ body[data-theme="dark"] #experience {
 html[data-theme="dark"] #experience h2.heading,
 body[data-theme="dark"] #experience h2.heading {
   color: var(--text-strong) !important;
-}
-
-html[data-theme="dark"] #experience .vtimeline-content,
-body[data-theme="dark"] #experience .vtimeline-content {
-  background: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--text) !important;
 }
 
 html[data-theme="dark"] #experience .vtimeline-content h3,
@@ -804,13 +850,12 @@ body[data-theme="dark"] h6 {
   color: var(--text-strong) !important;
 }
 
-/* Dark mode: make cards distinct from black background */
+/* Dark mode: cards elevated above stripe */
 html[data-theme="dark"] #experience .vtimeline-content,
-body[data-theme="dark"] #experience .vtimeline-content,
-html[data-theme="dark"] #experience .vtimeline-block,
-body[data-theme="dark"] #experience .vtimeline-block {
-  background: var(--dark-surface) !important; /* dark gray card */
-  border-color: #2a2f38 !important;
+body[data-theme="dark"] #experience .vtimeline-content {
+  background: var(--dark-card-on-navy) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
 }
 
 /* Experience timeline: keep the wrapper transparent so it doesn't cover the vertical line */
@@ -822,15 +867,15 @@ body[data-theme="dark"] #experience .vtimeline-block {
 
 html[data-theme="dark"] #education .education-block,
 body[data-theme="dark"] #education .education-block {
-  background: var(--dark-surface) !important;
-  border-color: #2a2f38 !important;
+  background: var(--dark-card-on-gray) !important;
+  border-color: var(--border) !important;
   color: var(--text) !important;
 }
 
 html[data-theme="dark"] #projects .pub-card,
 body[data-theme="dark"] #projects .pub-card {
-  background: var(--dark-surface) !important;
-  border-color: #2a2f38 !important;
+  background: var(--dark-card-on-navy) !important;
+  border-color: var(--border) !important;
 }
 
 #projects .pub-abs p {
