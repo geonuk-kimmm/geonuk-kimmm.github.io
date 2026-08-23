@@ -6,14 +6,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Geonuk Kim</title>
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <link href="css/custom.css?v=dark-stripes-1" rel="stylesheet">
+    <link href="css/custom.css?v=space-fun-1" rel="stylesheet">
+    <style>
+        /* 이메일 복사 버튼 및 툴팁 스타일 */
+        .email-copy-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            color: #79818a; /* 기존 social a 태그와 동일한 회색 톤 */
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .email-copy-btn:hover {
+            color: #374054; /* 마우스 호버 시 톤 */
+        }
+        .email-copy-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .copy-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 3px 8px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            white-space: nowrap;
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            pointer-events: none;
+        }
+        .copy-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -4px;
+            border-width: 4px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        .copy-tooltip.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Mode별 자기소개 문구 전환 스타일 */
+        .about-desc--fun {
+            display: none;
+        }
+        html[data-theme="dark"] .about-desc--official,
+        body[data-theme="dark"] .about-desc--official {
+            display: none;
+        }
+        html[data-theme="dark"] .about-desc--fun,
+        body[data-theme="dark"] .about-desc--fun {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,18 +101,18 @@
                 <a href="#experience">Experience</a>
             </li>
             <li>
-                <a href="#education">Education</a>
-            </li>
-            <li>
                 <a href="#projects">Publication</a>
             </li>
-
+            <li>
+                <a href="#education">Education</a>
+            </li>
             <li>
                 <a href="#contact">Contact</a>
             </li>
             <li class="menu-theme">
-                <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="야간 모드 전환" onclick="window.toggleTheme && window.toggleTheme()">
-                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Switch between Official and Fun mode" onclick="window.toggleTheme && window.toggleTheme()">
+                    <span class="theme-toggle__opt" data-mode="light">Official</span>
+                    <span class="theme-toggle__opt" data-mode="dark">Fun</span>
                 </button>
             </li>
         </ul>
@@ -52,118 +120,80 @@
     <!-- End header -->
 
     <div id="about">
-	    <div class="container">
-	        <div class="row">
-	            <div class="col-md-4">
-	                <h2 class="heading">Geonuk Kim</h2>
-	                <img src="images/smile.jpg" alt="figure" style="display: block; width: 100%; max-width: 200px; height: auto; border-radius: 8px; margin-top: 6px; -webkit-clip-path: inset(5% 0 5% 0 round 8px); clip-path: inset(5% 0 5% 0 round 8px);">
-	            </div>
-	            <div class="col-md-8">
-	                <p>
-                        <br>
-                        <br>
-	                    As an AI research engineer, I am driven to build AI that goes beyond clean benchmarks and holds up under real-world conditions.
-	                    My research spans open-set recognition, few-shot learning, and class imbalance, with an eye toward real-world deployment in areas
-	                    such as visual inspection at Hyundai Motor Group and LG Energy Solution. I am also interested in autonomous driving and robotics, where real-world complexity is amplified at scale.
-	                </p>
-	                <div class="social">
-	                    <ul>
-	                        <li>
-	                            <a href="mailto:geonuk_kim@korea.ac.kr" target="_blank" rel="noopener noreferrer"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-	                        </li>
-	                        <li>
-	                            <a href="https://github.com/geonuk-kimmm" target="_blank" rel="noopener noreferrer"><i class="fa fa-github" aria-hidden="true"></i></a>
-	                        </li>
-	                        <li>
-	                            <a href="https://kr.linkedin.com/in/geounkkim" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-	                        </li>
-	                        <li>
-	                            <a href="https://scholar.google.com/citations?user=CtienZMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
-	                        </li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+        <div class="container">
+            <div class="about-hero">
+                <div class="about-hero__photo">
+                    <img src="images/smile.jpg" alt="Geonuk Kim" style="max-width: 150px; width: 100%; height: auto;">
+                </div>
+                <div class="about-hero__copy">
+                    <p class="whoami">$ whoami</p>
+                    <h2 class="heading">Geonuk Kim</h2>
+                    
+                    <!-- Official 모드 자기소개 -->
+                    <p class="about-desc about-desc--official">
+                        As an AI research engineer, I am driven to build AI that goes beyond clean benchmarks and holds up under real-world conditions.
+                        My research spans open-set recognition, few-shot learning, and class imbalance, with an eye toward real-world deployment in areas
+                        such as visual inspection and autonomous driving. 
+                    </p>
+
+                    <!-- Fun 모드 자기소개 (ABC 로 임시 배치) -->
+                    <p class="about-desc about-desc--fun">
+                        TBU
+                    </p>
+
+                    <div class="social">
+                        <ul>
+                            <li class="email-copy-wrapper">
+                                <button type="button" class="email-copy-btn" data-email="geonuk_kim@korea.ac.kr" aria-label="Copy Email Address">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </button>
+                                <span class="copy-tooltip">Copied!</span>
+                            </li>
+                            <li>
+                                <a href="https://github.com/geonuk-kimmm" target="_blank" rel="noopener noreferrer"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://kr.linkedin.com/in/geounkkim" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://scholar.google.com/citations?user=CtienZMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="experience" class="background-alt">
         <h2 class="heading">Experience</h2>
         <div id="experience-timeline">
-	    <div data-date="October 2023 – current">
+            <div data-date="August 2026 – current">
+                <h3>42dot, global software center of Hyundai Motor Group</h3>
+                Perception for Autonomous Driving
+            </div>
+
+            <div data-date="October 2023 – June 2026">
                 <h3>LG Energy Solution</h3>
-                <h4>CDO Group</h4>
-                <p>
-                    AI Research Engineer at CDO Group.
-                </p>
-                <ul>
-                    <li>Developed a generalizable open-set defect detection system, which was adopted in Davinci, the company-wide big data analytics platform.</li>
-                    <li>Deployed a battery-surface defect detector in Poland, optimizing anchor assignment to minimize escapes and learning diverse background representations from normal data to slash false calls.</li>
-                </ul>
+                Visual Inspection for AI Factory
             </div>
-	
+    
             <div data-date="September 2022 – September 2023">
-                <h3>Hyundai Motor Group </h3>
-                <h4>42dot - Autonomous Driving Algorithm Team</h4>
-                <p>
-                    AI Research Engineer at 42dot - Autonomous Driving Algorithm Team.
-                </p>
-                <ul>
-                    <li>Explored the development of a unified perception network to integrate multi-task modules for autonomous driving.</li>
-                </ul>
+                <h3>42dot, global software center of Hyundai Motor Group</h3>
+                Perception for Autonomous Driving
             </div>
-		
+        
             <div data-date="February 2021 – September 2022">
-                <h3>Hyundai Motor Group</h3>
-                <h4>AIR LAB - Computer Vision Team</h4>
-                <p>
-                    AI Research Engineer at AIR LAB - Computer Vision Team.
-                </p>
-                <ul>
-                    <li>Designed an end-to-end multimodal road-scene OCR system that jointly optimizes vision and language models to infer occluded text.</li>
-                    <li>Researched LiDAR-based 3D object detection for a joint industry-academic project, designing point-dropout to alleviate proximity density bias and weather-induced point cloud degradation. </li>
-				</ul>
+                <h3>AIRS, Hyundai Motor Company</h3>
+                Multi-modal/Road-scene OCR
             </div>
-		
-	    
         </div>
     </div>
     <!-- End #experience -->
-
-    <div id="education">
-        <h2 class="heading">Education</h2>
-	    
-        <div class="education-block">
-            <h3>Korea University</h3>
-            <span class="education-date">March 2019 - February 2021</span>
-            <h4>Master's Degree, Brain-Cognitive Engineering</h4>
-            <ul>
-                <li>
-		    Pattern Recognition & Machine Learning Laboratory (PRML) <a href="http://pr.korea.ac.kr/">[site]</a> under the supervision of Prof. Seong-Whan Lee.
-                </li>
-            </ul>
-        </div>
-        <!-- End .education-block -->
-	    
-        <div class="education-block">
-            <h3>Kwangwoon University</h3>
-            <span class="education-date">March 2015 - February 2019</span>
-            <h4>Bachelor's Degree, Electronic Engineering</h4>
-            <ul>
-                <li>
-		    Multimedia Laboratory under the supervision of Prof. Seoung-Jun Oh.
-                </li>
-            </ul>
-        </div>
-        <!-- End .education-block -->
-
-    </div>
-    <!-- End #education -->
-		
+        
     <div id="projects" class="background-alt">
         <h2 class="heading">Publication</h2>
         <div class="container">
-            <!-- Replace images/pubs/*.jpg (or .gif) with paper teasers -->
             <div class="pub-list">
                 <article class="pub-card">
                     <div class="pub-card__body">
@@ -325,8 +355,35 @@
     </div>
     <!-- End #projects -->
 
-    
-    
+    <div id="education">
+        <h2 class="heading">Education</h2>
+        
+        <div class="education-block">
+            <h3>Korea University</h3>
+            <span class="education-date">March 2019 - February 2021</span>
+            <h4>Master's Degree, Brain-Cognitive Engineering</h4>
+            <ul>
+                <li>
+                    Pattern Recognition & Machine Learning Laboratory (PRML) <a href="http://pr.korea.ac.kr/">[site]</a> under the supervision of Prof. Seong-Whan Lee.
+                </li>
+            </ul>
+        </div>
+        <!-- End .education-block -->
+        
+        <div class="education-block">
+            <h3>Kwangwoon University</h3>
+            <span class="education-date">March 2015 - February 2019</span>
+            <h4>Bachelor's Degree, Electronic Engineering</h4>
+            <ul>
+                <li>
+                    Multimedia Laboratory under the supervision of Prof. Seoung-Jun Oh.
+                </li>
+            </ul>
+        </div>
+        <!-- End .education-block -->
+
+    </div>
+    <!-- End #education -->
 
     <div id="contact">
         <h2>Get in Touch</h2>
@@ -357,8 +414,11 @@
                 </div>
                 <div class="col-sm-5 social">
                     <ul>
-                        <li>
-                            <a href="mailto:geonuk_kim@korea.ac.kr"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                        <li class="email-copy-wrapper">
+                            <button type="button" class="email-copy-btn" data-email="geonuk_kim@korea.ac.kr" aria-label="Copy Email Address">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </button>
+                            <span class="copy-tooltip">Copied!</span>
                         </li>
                         <li>
                             <a href="https://github.com/geonuk-kimmm" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
@@ -386,10 +446,47 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.min.js?v=icon-toggle-2"></script>
+    <script src="js/scripts.min.js?v=mode-toggle-1"></script>
+    <script src="js/nerd-sky.js?v=2"></script>
     <script>
     (function ($) {
-        // Theme toggle fallback (in case external script is cached/blocked)
+        // 이메일 클립보드 복사 및 Copied! 툴팁 처리
+        $(document).on('click', '.email-copy-btn', function (e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var email = $btn.attr('data-email');
+            var $wrapper = $btn.closest('.email-copy-wrapper');
+            var $tooltip = $wrapper.find('.copy-tooltip');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(showTooltip).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+
+            function fallbackCopy() {
+                var tempInput = document.createElement('input');
+                tempInput.value = email;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    document.execCommand('copy');
+                    showTooltip();
+                } catch (err) {
+                    console.error('Copy failed', err);
+                }
+                document.body.removeChild(tempInput);
+            }
+
+            function showTooltip() {
+                $tooltip.addClass('show');
+                setTimeout(function () {
+                    $tooltip.removeClass('show');
+                }, 1800);
+            }
+        });
+
+        // Theme toggle fallback
         (function initThemeToggleFallback() {
             var root = document.documentElement;
             var btn = document.getElementById('theme-toggle');
@@ -400,15 +497,9 @@
                 if (isDark) { root.setAttribute('data-theme', 'dark'); document.body && document.body.setAttribute('data-theme','dark'); }
                 else { root.removeAttribute('data-theme'); document.body && document.body.removeAttribute('data-theme'); }
                 btn.setAttribute('aria-pressed', String(isDark));
-                btn.setAttribute('title', isDark ? '밝게' : '야간');
-                var icon = btn.querySelector('i.fa');
-                if (icon) {
-                    icon.classList.remove('fa-moon-o', 'fa-sun-o');
-                    icon.classList.add(isDark ? 'fa-sun-o' : 'fa-moon-o');
-                }
+                btn.setAttribute('title', isDark ? 'Switch to Official mode' : 'Switch to Fun mode');
             }
 
-            // Hard fallback: global function called by inline onclick (bypasses any overlay/delegation issues)
             window.toggleTheme = function () {
                 var isDark = root.getAttribute('data-theme') === 'dark';
                 var next = isDark ? 'light' : 'dark';
@@ -469,27 +560,23 @@
             });
         })();
 
-        // Publication abstracts: toggle inline (no zoom)
+        // Publication abstracts: toggle inline
         $(document).on('click', '#projects .pub-abs-btn', function () {
             var $btn = $(this);
             var $card = $btn.closest('.pub-card__body');
             var $abs = $card.find('.pub-abs').first();
-            var isOpen = !$abs.prop('hidden');
+            var isOpen = $abs.is(':visible');
 
-            $abs.prop('hidden', isOpen);
-            $btn.attr('aria-expanded', String(!isOpen));
-            // prevent "stuck" focus highlight after click
-            this.blur();
-        });
-
-        $lb.find('.life-lightbox__backdrop, .life-lightbox__close').on('click', closeLifeLightbox);
-
-        $(document).on('keydown', function (e) {
-            if (e.keyCode === 27 && $lb.hasClass('is-open')) {
-                closeLifeLightbox();
+            if (isOpen) {
+                $abs.slideUp(200, function () {
+                    $abs.attr('hidden', true);
+                });
+                $btn.attr('aria-expanded', 'false');
+            } else {
+                $abs.removeAttr('hidden').hide().slideDown(200);
+                $btn.attr('aria-expanded', 'true');
             }
         });
-
     })(jQuery);
     </script>
 </body>

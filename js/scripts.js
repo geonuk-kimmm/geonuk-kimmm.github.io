@@ -31,12 +31,7 @@
         var btn = document.getElementById('theme-toggle');
         if (btn) {
             btn.setAttribute('aria-pressed', String(isDark));
-            btn.setAttribute('title', isDark ? '밝게' : '야간');
-            var $icon = btn.querySelector('i.fa');
-            if ($icon) {
-                $icon.classList.remove('fa-moon-o', 'fa-sun-o');
-                $icon.classList.add(isDark ? 'fa-sun-o' : 'fa-moon-o');
-            }
+            btn.setAttribute('title', isDark ? 'Switch to Official mode' : 'Switch to Fun mode');
         }
     }
 
