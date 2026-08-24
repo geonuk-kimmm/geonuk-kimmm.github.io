@@ -1210,6 +1210,7 @@ html:not([data-theme="dark"]) .nerd-star {
 
 .timeline-title {
   display: block;
+  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
   font-size: 1.1em;
   font-weight: 600;
   color: var(--text-strong);
