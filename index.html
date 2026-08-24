@@ -111,8 +111,8 @@
             </li>
             <li class="menu-theme">
                 <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="Switch between Official and Fun mode" onclick="window.toggleTheme && window.toggleTheme()">
-                    <span class="theme-toggle__opt" data-mode="light">Official</span>
-                    <span class="theme-toggle__opt" data-mode="dark">Fun</span>
+                    <span class="theme-toggle__opt" data-mode="light">☀ Official</span>
+                    <span class="theme-toggle__opt" data-mode="dark">☾ Fun</span>
                 </button>
             </li>
         </ul>
@@ -166,27 +166,37 @@
     </div>
 
     <div id="experience" class="background-alt">
-        <h2 class="heading">Experience</h2>
-        <div id="experience-timeline">
-            <div data-date="August 2026 – current">
-                <h3>42dot, global software center of Hyundai Motor Group</h3>
-                Perception for Autonomous Driving
-            </div>
+        <div class="container">
+            <h2 class="heading">Experience</h2>
+            <ol class="timeline timeline-experience">
+                <li class="timeline-item">
+                    <span class="timeline-marker"></span>
+                    <h3 class="timeline-title">42dot, global software center of Hyundai Motor Group</h3>
+                    <time class="timeline-date">August 2026 – Present</time>
+                    <span class="timeline-company">Perception for Autonomous Driving</span>
+                </li>
 
-            <div data-date="October 2023 – June 2026">
-                <h3>LG Energy Solution</h3>
-                Visual Inspection for AI Factory
-            </div>
-    
-            <div data-date="September 2022 – September 2023">
-                <h3>42dot, global software center of Hyundai Motor Group</h3>
-                Perception for Autonomous Driving
-            </div>
-        
-            <div data-date="February 2021 – September 2022">
-                <h3>AIRS, Hyundai Motor Company</h3>
-                Multi-modal/Road-scene OCR
-            </div>
+                <li class="timeline-item">
+                    <span class="timeline-marker"></span>
+                    <h3 class="timeline-title">LG Energy Solution</h3>
+                    <time class="timeline-date">October 2023 – June 2026</time>
+                    <span class="timeline-company">Visual Inspection for AI Factory</span>
+                </li>
+
+                <li class="timeline-item">
+                    <span class="timeline-marker"></span>
+                    <h3 class="timeline-title">42dot, global software center of Hyundai Motor Group</h3>
+                    <time class="timeline-date">September 2022 – September 2023</time>
+                    <span class="timeline-company">Perception for Autonomous Driving</span>
+                </li>
+
+                <li class="timeline-item">
+                    <span class="timeline-marker"></span>
+                    <h3 class="timeline-title">AIRS, Hyundai Motor Company</h3>
+                    <time class="timeline-date">February 2021 – September 2022</time>
+                    <span class="timeline-company">Multi-modal/Road-scene OCR</span>
+                </li>
+            </ol>
         </div>
     </div>
     <!-- End #experience -->
@@ -356,32 +366,30 @@
     <!-- End #projects -->
 
     <div id="education">
-        <h2 class="heading">Education</h2>
-        
-        <div class="education-block">
-            <h3>Korea University</h3>
-            <span class="education-date">March 2019 - February 2021</span>
-            <h4>Master's Degree, Brain-Cognitive Engineering</h4>
-            <ul>
-                <li>
-                    Pattern Recognition & Machine Learning Laboratory (PRML) <a href="http://pr.korea.ac.kr/">[site]</a> under the supervision of Prof. Seong-Whan Lee.
+        <div class="container">
+            <h2 class="heading">Education</h2>
+            <ol class="timeline timeline-education">
+                <li class="timeline-item">
+                    <span class="timeline-marker"></span>
+                    <h3 class="timeline-title">Master's Degree, Brain-Cognitive Engineering</h3>
+                    <span class="timeline-company">Korea University</span>
+                    <time class="timeline-date">March 2019 – February 2021</time>
+                    <p class="timeline-description">
+                        Pattern Recognition & Machine Learning Laboratory (PRML) <a href="http://pr.korea.ac.kr/" target="_blank" rel="noopener noreferrer">[site]</a> under the supervision of Prof. Seong-Whan Lee.
+                    </p>
                 </li>
-            </ul>
-        </div>
-        <!-- End .education-block -->
-        
-        <div class="education-block">
-            <h3>Kwangwoon University</h3>
-            <span class="education-date">March 2015 - February 2019</span>
-            <h4>Bachelor's Degree, Electronic Engineering</h4>
-            <ul>
-                <li>
-                    Multimedia Laboratory under the supervision of Prof. Seoung-Jun Oh.
-                </li>
-            </ul>
-        </div>
-        <!-- End .education-block -->
 
+                <li class="timeline-item">
+                    <span class="timeline-marker"></span>
+                    <h3 class="timeline-title">Bachelor's Degree, Electronic Engineering</h3>
+                    <span class="timeline-company">Kwangwoon University</span>
+                    <time class="timeline-date">March 2015 – February 2019</time>
+                    <p class="timeline-description">
+                        Multimedia Laboratory under the supervision of Prof. Seoung-Jun Oh.
+                    </p>
+                </li>
+            </ol>
+        </div>
     </div>
     <!-- End #education -->
 

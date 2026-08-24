@@ -1171,3 +1171,150 @@ html:not([data-theme="dark"]) .nerd-star {
     font-size: 0.8rem !important; /* 기본값(~1rem)보다 작게 설정 */
     font-weight: 400;              /* 필요시 굵기 조절 */
 }
+
+/* New Timeline Styles (sanjaykariyappa.github.io layout: no card box, continuous background) */
+.timeline {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 30px auto 0;
+  max-width: 700px;
+  text-align: left;
+  border-left: 2px solid var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-left: 28px;
+  margin-bottom: 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 3px;
+  left: -37px;
+  width: 18px;
+  height: 18px;
+  background: var(--bg);
+  border: 2px solid var(--accent-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg);
+  z-index: 5;
+}
+
+.timeline-title {
+  display: block;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-strong);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.timeline-company {
+  display: block;
+  font-size: 0.95em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.timeline-date {
+  display: block;
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+.timeline-description {
+  font-size: 0.9em;
+  color: var(--text);
+  margin: 8px 0 0 0;
+  line-height: 1.5;
+}
+
+.timeline-description a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.timeline-description a:hover {
+  color: var(--muted);
+}
+
+/* Dark mode timeline */
+html[data-theme="dark"] .timeline,
+body[data-theme="dark"] .timeline {
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] .timeline-marker,
+body[data-theme="dark"] .timeline-marker {
+  width: 16px;
+  height: 16px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffd54a;
+  font-size: 16px;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(255, 213, 74, 0.85));
+}
+
+html[data-theme="dark"] .timeline-marker::before,
+body[data-theme="dark"] .timeline-marker::before {
+  content: "\2605";
+}
+
+html[data-theme="dark"] .timeline-title,
+body[data-theme="dark"] .timeline-title {
+  color: var(--text-strong) !important;
+}
+
+html[data-theme="dark"] .timeline-company,
+body[data-theme="dark"] .timeline-company {
+  color: var(--text) !important;
+}
+
+html[data-theme="dark"] .timeline-date,
+body[data-theme="dark"] .timeline-date {
+  color: var(--muted) !important;
+}
+
+html[data-theme="dark"] .timeline-description,
+body[data-theme="dark"] .timeline-description {
+  color: var(--text) !important;
+}
+
+/* Mobile responsive */
+@media only screen and (max-width: 750px) {
+  .timeline {
+    max-width: 100%;
+    padding-right: 10px;
+  }
+
+  .timeline-item {
+    margin-left: 24px;
+  }
+
+  .timeline-marker {
+    left: -33px;
+  }
+
+  .timeline-title {
+    font-size: 1em;
+  }
+
+  .timeline-company {
+    font-size: 0.9em;
+  }
+}
