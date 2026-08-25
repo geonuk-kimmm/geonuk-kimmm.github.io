@@ -332,6 +332,12 @@ body[data-theme="dark"] #contact {
   border-radius: 0 !important;
 }
 
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+  color: var(--muted) !important;
+  opacity: 1 !important;
+}
+
 #contact-form input:focus,
 #contact-form textarea:focus {
   background: var(--card) !important;
